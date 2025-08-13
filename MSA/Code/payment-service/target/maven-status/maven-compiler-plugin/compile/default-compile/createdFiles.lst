@@ -1,7 +1,0 @@
-com\example\MSA_test\payment\controller\PaymentController.class
-com\example\MSA_test\payment\entity\PaymentEntity.class
-com\example\MSA_test\payment\PaymentServiceApplication.class
-com\example\MSA_test\payment\repository\PaymentRepository.class
-com\example\MSA_test\payment\controller\PaymentController$PayRequest.class
-com\example\MSA_test\payment\entity\PaymentEntity$PaymentEntityBuilder.class
-com\example\MSA_test\payment\service\PaymentService.class
