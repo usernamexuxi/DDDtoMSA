@@ -1,0 +1,30 @@
+#server:
+#  port: 8080
+#spring:
+#  main:
+#    web-application-type: reactive
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: root
+          predicates:
+            - Path=/
+          uri: forward:/index.html
+        - id: user-svc
+          predicates:
+            - Path=/users/**
+          uri: http://localhost:8081
+        - id: order-svc
+          predicates:
+            - Path=/orders/**,/order-items/**
+          uri: http://localhost:8082
+        - id: payment-svc
+          predicates:
+            - Path=/payments/**
+          uri: http://localhost:8083
+        - id: inventory-svc
+          predicates:
+            - Path=/inventory/**
+          uri: http://localhost:8084

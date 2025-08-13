@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>MSA 실험</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="container">
+
+    <!-- 사용자(User) 관리 -->
+    <section id="userSection">
+        <h2>사용자(User) 관리</h2>
+        <div class="form-row">
+            <input id="userName" placeholder="이름" />
+            <input id="userEmail" placeholder="이메일" />
+            <input id="userAddress" placeholder="주소" />
+            <button onclick="createUser()">등록</button>
+        </div>
+        <pre id="userResult"></pre>
+        <button onclick="fetchUsers()">전체 사용자 조회</button>
+        <pre id="usersList"></pre>
+    </section>
+
+    <!-- 재고(Inventory) 관리 -->
+    <section id="inventorySection">
+        <h2>재고(Inventory) 관리</h2>
+        <div class="form-row">
+            <input id="invProductName" placeholder="상품명" />
+            <input id="invStock" type="number" min="0" placeholder="수량" />
+            <button onclick="saveInventory()">등록</button>
+            <button id="updateBtn" onclick="updateInventory()" style="display:none;">수정</button>
+        </div>
+        <input id="invId" type="hidden" />
+        <pre id="invResult"></pre>
+        <button onclick="fetchInventory()">전체 재고 조회</button>
+        <pre id="invList"></pre>
+    </section>
+
+    <!-- 주문(Order) 관리 -->
+    <section id="orderSection">
+        <h2>주문(Order) 관리</h2>
+        <div class="form-row">
+            <input id="orderUserId" type="number" placeholder="사용자 ID" />
+            <select id="orderStatus">
+                <option value="PENDING">대기중</option>
+                <option value="PROCESSING">처리중</option>
+                <option value="COMPLETED">완료</option>
+                <option value="CANCELED">취소</option>
+            </select>
+            <button onclick="createOrder()">주문 생성</button>
+        </div>
+        <pre id="orderResult"></pre>
+        <button onclick="fetchOrders()">전체 주문 조회</button>
+        <pre id="ordersList"></pre>
+
+        <h3>주문 완료 처리</h3>
+        <div class="form-row">
+            <input id="completeOrderId" type="number" placeholder="주문 ID" />
+            <button onclick="completeOrder()">주문 완료</button>
+        </div>
+        <pre id="statusResult"></pre>
+    </section>
+
+    <!-- 주문항목(OrderItem) 관리 -->
+    <section id="orderItemSection">
+        <h2>주문항목(OrderItem) 관리</h2>
+        <div class="form-row">
+            <input id="itemOrderId" type="number" placeholder="주문 ID" />
+            <input id="itemProductName" placeholder="상품명" />
+            <input id="itemQuantity" type="number" min="1" placeholder="수량" />
+            <input id="itemUnitPrice" type="number" step="0.01" placeholder="단가" />
+            <button onclick="addOrderItem()">주문항목 추가</button>
+        </div>
+        <pre id="itemResult"></pre>
+        <button onclick="fetchOrderItems()">전체 주문항목 조회</button>
+        <pre id="itemsList"></pre>
+    </section>
+
+    <!-- 결제(Payment) 관리 -->
+    <section id="paymentSection">
+        <h2>결제(Payment) 관리</h2>
+        <div class="form-row">
+            <input id="payOrderId" type="number" placeholder="주문 ID" />
+            <input id="payAmount" type="number" step="0.01" placeholder="결제금액" />
+            <button onclick="createPayment()">결제 생성</button>
+        </div>
+        <pre id="payResult"></pre>
+        <button onclick="fetchPayments()">전체 결제 조회</button>
+        <pre id="payList"></pre>
+    </section>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
