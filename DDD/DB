@@ -1,1 +1,48 @@
+1. 사용자(User) 테이블
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    address VARCHAR(200),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
+2. 주문(Order) 테이블
+CREATE TABLE orders (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    status VARCHAR(30) NOT NULL DEFAULT 'PENDING',
+    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    -- 결제까지 트랜잭션 실험 위해,
+    total_amount DECIMAL(12,2) NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+3. 주문항목(OrderItem) 테이블
+CREATE TABLE order_items (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id BIGINT NOT NULL,
+    product_name VARCHAR(200) NOT NULL,
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
+    total_price DECIMAL(12,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+4. 결제(Payment) 테이블
+CREATE TABLE payments (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id BIGINT NOT NULL,
+    payment_method VARCHAR(30),
+    payment_status VARCHAR(30),
+    paid_amount DECIMAL(12,2),
+    paid_at DATETIME,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+5. 재고(Inventory) 테이블
+CREATE TABLE inventory (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(200) NOT NULL,
+    stock INT NOT NULL
+);
