@@ -1,6 +1,0 @@
-com\example\MSA_test\user\repository\UserRepository.class
-com\example\MSA_test\user\controller\UserController.class
-com\example\MSA_test\user\entity\UserEntity$UserEntityBuilder.class
-com\example\MSA_test\user\service\UserService.class
-com\example\MSA_test\user\entity\UserEntity.class
-com\example\MSA_test\user\UserServiceApplication.class
