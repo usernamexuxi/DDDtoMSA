@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DDD 실험</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>DDD 실험</h1>
+
+    <!-- 사용자 관리 -->
+    <div class="section">
+        <h2>사용자(User) 관리</h2>
+        <div class="form-row">
+            <input id="userName" type="text" placeholder="이름 (예: 홍길동)">
+            <input id="userEmail" type="email" placeholder="이메일 (예: hong@example.com)">
+            <input id="userAddress" type="text" placeholder="주소 (예: 서울시 강남구)">
+            <button onclick="createUser()">사용자 등록</button>
+        </div>
+        <button onclick="fetchUsers()">전체 사용자 조회</button>
+        <div class="result-box" id="userResult"></div>
+        <pre id="usersList"></pre>
+    </div>
+
+    <!-- 재고 관리 -->
+    <div class="section">
+        <h2>재고(Inventory) 관리</h2>
+        <div class="form-row">
+            <input id="invId" type="number" placeholder="재고 ID (수정시 필요)" style="display:none;">
+            <input id="invProductName" type="text" placeholder="상품명 (예: 노트북)">
+            <input id="invStock" type="number" placeholder="재고수량" min="0">
+            <button onclick="saveInventory()">재고 등록</button>
+            <button onclick="updateInventory()" style="display:none;" id="updateBtn">재고 수정</button>
+        </div>
+        <button onclick="fetchInventory()">전체 재고 조회</button>
+        <button onclick="enableEditMode()">수정 모드</button>
+        <div class="result-box" id="invResult"></div>
+        <pre id="invList"></pre>
+    </div>
+
+    <!-- 주문 관리 -->
+    <div class="section">
+        <h2>주문(Order) 관리</h2>
+        <div class="form-row">
+            <input id="orderUserId" type="number" placeholder="사용자 ID" min="1">
+            <select id="orderStatus">
+                <option value="PENDING">대기중</option>
+                <option value="PROCESSING">처리중</option>
+                <option value="COMPLETED">완료</option>
+                <option value="CANCELLED">취소</option>
+            </select>
+            <input id="orderAmount" type="number" step="0.01" placeholder="총금액" min="0">
+            <button onclick="createOrder()">주문 생성</button>
+        </div>
+        <button onclick="fetchOrders()">전체 주문 조회</button>
+        <div class="result-box" id="orderResult"></div>
+        <div class="section">
+            <h2>상태 변경 모드</h2>
+            <button id="toggleStatusModeBtn" onclick="toggleStatusMode()">상태 변경 모드 토글</button>
+            <div id="statusMode" style="display:none; margin-top:1em;">
+                <input id="statusOrderId" type="number" placeholder="주문 ID 입력">
+                <select id="newStatus">
+                    <option value="PENDING">대기중</option>
+                    <option value="PROCESSING">처리중</option>
+                    <option value="COMPLETED">완료</option>
+                    <option value="CANCELLED">취소</option>
+                </select>
+                <button onclick="changeOrderStatus()">상태 변경</button>
+                <div id="statusResult" style="margin-top:0.5em;"></div>
+            </div>
+        </div>
+        <pre id="ordersList"></pre>
+    </div>
+    <div class="section">
+        <h2>주문 완료</h2>
+        <input id="completeOrderId" type="number" placeholder="주문 ID 입력">
+        <button onclick="completeOrder()">주문 완료</button>
+        <div id="completeResult"></div>
+    </div>
+
+    <!-- 주문항목 관리 -->
+    <div class="section">
+        <h2>주문항목(OrderItem) 관리</h2>
+        <div class="form-row">
+            <input id="itemOrderId" type="number" placeholder="주문 ID" min="1">
+            <input id="itemProductName" type="text" placeholder="상품명">
+            <input id="itemQuantity" type="number" placeholder="수량" min="1">
+            <input id="itemUnitPrice" type="number" step="0.01" placeholder="단가" min="0">
+            <button onclick="addOrderItem()">주문항목 추가</button>
+        </div>
+        <button onclick="fetchOrderItems()">전체 주문항목 조회</button>
+        <div class="result-box" id="itemResult"></div>
+        <pre id="itemsList"></pre>
+    </div>
+
+    <!-- 결제 관리 -->
+    <div class="section">
+        <h2>결제(Payment) 관리</h2>
+        <div class="form-row">
+            <input id="payOrderId" type="number" placeholder="주문 ID" min="1">
+            <select id="payMethod">
+                <option value="CARD">신용카드</option>
+                <option value="CASH">현금</option>
+                <option value="TRANSFER">계좌이체</option>
+                <option value="MOBILE">모바일결제</option>
+            </select>
+            <select id="payStatus">
+                <option value="PENDING">결제대기</option>
+                <option value="COMPLETED">결제완료</option>
+                <option value="FAILED">결제실패</option>
+            </select>
+            <input id="payAmount" type="number" step="0.01" placeholder="결제금액" min="0">
+            <button onclick="createPayment()">결제 생성</button>
+        </div>
+        <button onclick="fetchPayments()">전체 결제 조회</button>
+        <div class="result-box" id="payResult"></div>
+        <pre id="payList"></pre>
+    </div>
+</div>
+
+<!-- 외부 JavaScript 파일 링크 -->
+<script src="app.js"></script>
+</body>
+</html>
