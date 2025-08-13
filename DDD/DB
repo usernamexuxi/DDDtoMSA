@@ -1,3 +1,5 @@
+MySQL Workbench
+
 1. 사용자(User) 테이블
 CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
