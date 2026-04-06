@@ -8,4 +8,4 @@
 - Docker Desktop
 - Spring Boot / Maven
 
-[AI 활용하여 코드 작성]
+* AI 활용하여 코드 작성
